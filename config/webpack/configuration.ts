@@ -1,9 +1,9 @@
-import { Configuration } from "webpack";
 import TsconfigPathsPlugin from "tsconfig-paths-webpack-plugin";
-import { WebpackOptions } from "./types/webpack";
+import { Configuration } from "webpack";
+import { devServer } from "./devServer";
 import { loaders } from "./loaders/loaders";
 import { plugins } from "./plugins";
-import { devServer } from "./devServer";
+import { WebpackOptions } from "./types/webpack";
 
 export const configuration = (options: WebpackOptions): Configuration => ({
   mode: options.mode,
@@ -27,5 +27,5 @@ export const configuration = (options: WebpackOptions): Configuration => ({
   plugins: plugins(options),
   devtool: options.isDev ? "inline-source-map" : undefined,
   devServer: options.isDev ? devServer(options) : undefined,
-  stats: 'errors-only',
+  stats: "errors-only",
 });
